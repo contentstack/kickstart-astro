@@ -1,0 +1,126 @@
+---
+import type { LivePreviewQuery } from "@contentstack/delivery-sdk";
+import Layout from "../layouts/Layout.astro";
+import { getPage } from "../lib/contentstack";
+import { VB_EmptyBlockParentClass } from "@contentstack/live-preview-utils";
+import "../styles/global.css";
+
+export const prerender = false;
+
+const searchParams = Astro.url.searchParams;
+const live_preview = searchParams.get("live_preview");
+const content_type_uid = searchParams.get("content_type_uid") || "";
+const entry_uid = searchParams.get("entry_uid") || "";
+
+const page = await getPage({
+  url: "/",
+  searchParams: {
+    live_preview,
+    contentTypeUid: content_type_uid,
+    entryUid: entry_uid,
+  } as LivePreviewQuery,
+});
+---
+
+<script>
+  import { initLivePreview } from "../lib/contentstack";
+  initLivePreview();
+</script>
+<Layout title="Welcome to Astro.">
+  <main class="max-w-screen-md mx-auto">
+    <section class="p-4">
+      {
+        page?.title ? (
+          <h1
+            class="text-4xl font-bold mb-4 text-center"
+            {...(page?.$ && page?.$.title)}
+          >
+            {page?.title}
+          </h1>
+        ) : null
+      }
+
+      {
+        page?.description ? (
+          <p class="mb-4 text-center" {...(page?.$ && page?.$.description)}>
+            {page?.description}
+          </p>
+        ) : null
+      }
+
+      {
+        page?.image ? (
+          <img
+            class="mb-4"
+            width={768}
+            height={414}
+            src={page?.image.url}
+            alt={page?.image.title}
+            {...(page?.image?.$ && page?.image?.$.url)}
+          />
+        ) : null
+      }
+      {
+        page?.rich_text ? (
+          <div {...(page?.$ && page?.$.rich_text)} set:html={page?.rich_text} />
+        ) : null
+      }
+
+      <div
+        class={`space-y-8 max-w-full mt-4 ${
+          !page?.blocks || page.blocks.length === 0
+            ? VB_EmptyBlockParentClass // Adding a class if no blocks are present
+            : ""
+        }`}
+        {...page?.$ && page?.$.blocks}
+      >
+        {
+          page?.blocks?.map((item: { block: any }, index: number) => {
+            const { block } = item;
+            const isImageLeft = block.layout === "image_left";
+
+            return (
+              <div
+                key={block._metadata.uid}
+                {...(page?.$ && page?.$[`blocks__${index}`])}
+                class={`flex flex-col md:flex-row items-center space-y-4 md:space-y-0 bg-white ${
+                  isImageLeft ? "md:flex-row" : "md:flex-row-reverse"
+                }`}
+              >
+                <div class="w-full md:w-1/2 p-4">
+                  {block.image ? (
+                    <img
+                      src={block.image.url}
+                      alt={block.image.title}
+                      width={200}
+                      height={112}
+                      class="w-full"
+                      {...(block?.$ && block?.$.image)}
+                    />
+                  ) : null}
+                </div>
+                <div class="w-full md:w-1/2 p-4">
+                  {block.title ? (
+                    <h2
+                      class="text-2xl font-bold"
+                      {...(block?.$ && block?.$.title)}
+                    >
+                      {block.title}
+                    </h2>
+                  ) : null}
+                  {block.copy ? (
+                    <div
+                      {...(block?.$ && block?.$.copy)}
+                      set:html={block?.copy}
+                      class="prose"
+                    />
+                  ) : null}
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </section>
+  </main>
+</Layout>
