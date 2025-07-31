@@ -1,7 +1,7 @@
 {
   "name": "kickstart-astro",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": false,
   "repository": {
     "type": "git",
@@ -20,11 +20,11 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "@contentstack/delivery-sdk": "^4.7.1",
-    "@contentstack/live-preview-utils": "^3.2.4",
-    "@tailwindcss/vite": "^4.1.10",
-    "astro": "^5.9.4",
-    "tailwindcss": "^4.1.10",
-    "typescript": "^5.8.3"
+    "@contentstack/delivery-sdk": "^4.8.0",
+    "@contentstack/live-preview-utils": "^3.3.0",
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.12.7",
+    "tailwindcss": "^4.1.11",
+    "typescript": "^5.9.2"
   }
 }
