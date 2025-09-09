@@ -29,7 +29,7 @@
     "@timbenniks/contentstack-endpoints": "^1.0.14",
     "@tybys/wasm-util": "^0.10.0",
     "astro": "^5.12.8",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
   }
 }
