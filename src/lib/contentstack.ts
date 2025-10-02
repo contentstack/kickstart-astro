@@ -1,4 +1,4 @@
-import contentstack, { QueryOperation, Region, type LivePreviewQuery } from '@contentstack/delivery-sdk';
+import contentstack, { QueryOperation, type LivePreviewQuery } from '@contentstack/delivery-sdk';
 import ContentstackLivePreview, { type IStackSdk } from '@contentstack/live-preview-utils';
 import type { Page } from './types';
 import { getContentstackEndpoints, getRegionForString } from "@timbenniks/contentstack-endpoints";
