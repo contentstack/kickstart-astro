@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   output: "server",
   vite: {
+    // @ts-ignore - tailwindcss plugin type compatibility
     plugins: [tailwindcss()],
   },
 });
