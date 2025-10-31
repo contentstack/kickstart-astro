@@ -1,7 +1,7 @@
 {
   "name": "kickstart-astro",
   "type": "module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "private": false,
   "repository": {
     "type": "git",
@@ -20,12 +20,18 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/node": "^9.4.6",
     "@contentstack/delivery-sdk": "^4.10.0",
-    "@contentstack/live-preview-utils": "^4.0.2",
-    "@tailwindcss/vite": "^4.1.14",
+    "@contentstack/live-preview-utils": "^4.1.1",
+    "@tailwindcss/vite": "^4.1.16",
     "@timbenniks/contentstack-endpoints": "^1.0.16",
     "astro": "^5.14.1",
     "tailwindcss": "^4.1.14",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@emnapi/core": "^1.6.0",
+    "@napi-rs/wasm-runtime": "^1.0.7",
+    "emnapi": "^1.6.0"
   }
 }
