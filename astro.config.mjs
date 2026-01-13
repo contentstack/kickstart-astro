@@ -12,5 +12,8 @@ export default defineConfig({
   vite: {
     // @ts-ignore - tailwindcss plugin type compatibility
     plugins: [tailwindcss()],
+    resolve: {
+      extensions: ['.js', '.mjs', '.ts', '.jsx', '.tsx', '.json'],
+    },
   },
 });
