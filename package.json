@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
-    "@astrojs/node": "^9.5.2",
+    "@astrojs/node": "^9.5.4",
     "@contentstack/delivery-sdk": "^4.11.0",
     "@contentstack/live-preview-utils": "^4.2.1",
     "@tailwindcss/vite": "^4.1.18",
