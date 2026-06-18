@@ -1,32 +1,24 @@
 import contentstack, { QueryOperation, type LivePreviewQuery } from '@contentstack/delivery-sdk';
 import ContentstackLivePreview, { type IStackSdk } from '@contentstack/live-preview-utils';
 import type { Page } from './types';
-import { getContentstackEndpoints, getRegionForString } from "@timbenniks/contentstack-endpoints";
+import { getContentstackEndpoint, type ContentstackEndpoints } from "@contentstack/utils";
 
-const region = getRegionForString(import.meta.env.PUBLIC_CONTENTSTACK_REGION as string);
-const endpoints = getContentstackEndpoints(region, true)
+const endpoints = getContentstackEndpoint(import.meta.env.PUBLIC_CONTENTSTACK_REGION || 'us', '', true) as ContentstackEndpoints
 
 export const stack = contentstack.stack({
   apiKey: import.meta.env.PUBLIC_CONTENTSTACK_API_KEY as string,
   deliveryToken: import.meta.env.PUBLIC_CONTENTSTACK_DELIVERY_TOKEN as string,
   environment: import.meta.env.PUBLIC_CONTENTSTACK_ENVIRONMENT as string,
 
-  // Setting the region
-  // if the region doesnt exist, fall back to a custom region given by the env vars
-  // for internal testing purposes at Contentstack we look for a custom region in the env vars, you do not have to do this.
-  region: region ? region : import.meta.env.PUBLIC_CONTENTSTACK_REGION as any,
-
-  // Setting the host for content delivery based on the region or environment variables
-  // This is done for internal testing purposes at Contentstack, you can omit this if you have set a region above.
-  host: import.meta.env.PUBLIC_CONTENTSTACK_CONTENT_DELIVERY || endpoints && endpoints.contentDelivery,
+  // Certain API endpoints can be set via environment variables for custom or dedicated Contentstack environments.
+  // You can omit these in your project. Use @contentstack/utils getContentstackEndpoint to get the right urls for your region.
+  region: import.meta.env.PUBLIC_CONTENTSTACK_REGION as any,
+  host: import.meta.env.PUBLIC_CONTENTSTACK_CONTENT_DELIVERY || endpoints.contentDelivery as string,
 
   live_preview: {
     enable: import.meta.env.PUBLIC_CONTENTSTACK_PREVIEW === 'true',
     preview_token: import.meta.env.PUBLIC_CONTENTSTACK_PREVIEW_TOKEN,
-
-    // Setting the host for live preview based on the region
-    // for internal testing purposes at Contentstack we look for a custom host in the env vars, you do not have to do this.
-    host: import.meta.env.PUBLIC_CONTENTSTACK_PREVIEW_HOST || endpoints && endpoints.preview
+    host: import.meta.env.PUBLIC_CONTENTSTACK_PREVIEW_HOST || endpoints.preview as string
   }
 });
 
@@ -41,9 +33,7 @@ export function initLivePreview() {
       environment: import.meta.env.PUBLIC_CONTENTSTACK_ENVIRONMENT as string,
     },
     clientUrlParams: {
-      // Setting the client URL parameters for live preview
-      // for internal testing purposes at Contentstack we look for a custom host in the env vars, you do not have to do this.
-      host: import.meta.env.PUBLIC_CONTENTSTACK_CONTENT_APPLICATION || endpoints && endpoints.application
+      host: import.meta.env.PUBLIC_CONTENTSTACK_CONTENT_APPLICATION || endpoints.application as string
     },
     editButton: {
       enable: true,
