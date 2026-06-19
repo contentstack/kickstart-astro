@@ -3,7 +3,7 @@ import ContentstackLivePreview, { type IStackSdk } from '@contentstack/live-prev
 import type { Page } from './types';
 import { getContentstackEndpoint, type ContentstackEndpoints } from "@contentstack/utils";
 
-const endpoints = getContentstackEndpoint(import.meta.env.PUBLIC_CONTENTSTACK_REGION || 'us', '', true) as ContentstackEndpoints
+const endpoints = getContentstackEndpoint(import.meta.env.PUBLIC_CONTENTSTACK_REGION || 'NA', '', true) as ContentstackEndpoints
 
 export const stack = contentstack.stack({
   apiKey: import.meta.env.PUBLIC_CONTENTSTACK_API_KEY as string,
