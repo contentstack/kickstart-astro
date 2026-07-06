@@ -1,7 +1,7 @@
 {
   "name": "kickstart-astro",
   "type": "module",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": false,
   "repository": {
     "type": "git",
@@ -20,25 +20,24 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/node": "^10.1.4",
     "@contentstack/delivery-sdk": "^5.2.2",
     "@contentstack/live-preview-utils": "^4.4.4",
-    "@tailwindcss/vite": "^4.3.2",
     "@contentstack/utils": "^1.9.1",
-    "astro": "^6.4.8",
+    "@tailwindcss/vite": "^4.3.2",
+    "astro": "^7.0.6",
     "tailwindcss": "^4.3.2",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "@emnapi/core": "^1.11.1",
+    "@emnapi/core": "^1.11.2",
     "@napi-rs/wasm-runtime": "^1.1.6",
-    "emnapi": "^1.11.1"
+    "emnapi": "^1.11.2"
   },
   "optionalDependencies": {
-    "lightningcss-linux-x64-gnu": "1.32.0",
-    "lightningcss-linux-x64-musl": "1.32.0",
     "@rollup/rollup-linux-x64-gnu": "^4.62.2",
-    "@rollup/rollup-linux-x64-musl": "^4.62.2"
+    "@rollup/rollup-linux-x64-musl": "^4.62.2",
+    "lightningcss-linux-x64-gnu": "1.32.0",
+    "lightningcss-linux-x64-musl": "1.32.0"
   },
   "overrides": {
     "devalue": "5.8.1",
