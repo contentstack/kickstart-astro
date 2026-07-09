@@ -1,4 +1,4 @@
-# Contentstack Kickstart: Astro SSR
+# Contentstack Kickstart: Astro
 
 Contentstack Kickstarts are the minimum amount of code needed to connect to Contentstack.
 This kickstart covers the following items:
@@ -6,7 +6,7 @@ This kickstart covers the following items:
 - SDK initialization
 - Live preview and Visual building setup
 
-> This example has Contentstack Live preview set up SSR mode turnt on. Which means Contentstack adds query parameters to the URL which we grab in the code and give to the Live Preview SDK intance. Contentstack refreshes the browser on content edit each time.
+> This example uses Astro's default static output and runs Contentstack Live Preview in client-side (CSR) mode. Pages are rendered at build time with published content; inside the Visual Builder the Live Preview SDK re-fetches the entry in the browser and re-renders the page on every edit — no server and no iframe refresh needed.
 
 More details about this codebase can be found on the [Contentstack docs](https://www.contentstack.com/docs/developers).
 
@@ -74,6 +74,19 @@ PUBLIC_CONTENTSTACK_REGION=EU
 PUBLIC_CONTENTSTACK_ENVIRONMENT=preview
 PUBLIC_CONTENTSTACK_PREVIEW=true
 ```
+
+### How live preview updates work
+
+Live preview runs in client-side (CSR) mode: the Live Preview SDK is initialized with `ssr: false`, changes arrive in the browser via postMessage, and the page re-fetches the entry with the Delivery SDK and re-renders client-side — no iframe refresh. See `src/lib/renderPage.ts` for the client-side renderer.
+
+### Timeline support
+
+[Timeline](https://www.contentstack.com/docs/content-managers/timeline/preview-content-across-a-timeline) (previewing your site as it will look at a future date, with scheduled Releases applied) works out of the box:
+
+- Timeline loads the site with `preview_timestamp` and `release_id` query params. The Delivery SDK picks these up automatically and sends them as headers to the Preview API, and `syncPreviewParams` in `src/lib/contentstack.ts` keeps them applied on every client-side re-fetch.
+- Timeline's compare view (diff highlighting) relies on the `data-cslp` edit tags, which the client-side renderer preserves.
+
+To use it, enable Timeline for your stack and schedule content with Releases. No code changes needed.
 
 ## Turn on Live Preview
 
