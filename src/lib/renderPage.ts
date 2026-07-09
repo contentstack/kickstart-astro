@@ -5,9 +5,22 @@ import type { Block, Page } from "./types";
 // src/pages/index.astro (via set:html) and in the browser by renderPage to
 // re-render during live preview and Timeline.
 
+function escapeHtml(value: unknown): string {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function escapeAttr(value: unknown): string {
+  return escapeHtml(value);
+}
+
 function cslp($: any, field: string): string {
   const path = $?.[field]?.["data-cslp"];
-  return path ? ` data-cslp="${path}"` : "";
+  return path ? ` data-cslp="${escapeAttr(path)}"` : "";
 }
 
 function blockHtml(item: { block: Block }, index: number, page: Page): string {
