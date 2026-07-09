@@ -29,7 +29,7 @@ function blockHtml(item: { block: Block }, index: number, page: Page): string {
       <div class="w-full md:w-1/2 p-4">
         ${
           block.title
-            ? `<h2 class="text-2xl font-bold"${cslp(block.$, "title")}>${block.title}</h2>`
+            ? `<h2 class="text-2xl font-bold"${cslp(block.$, "title")}>${escapeHtml(block.title)}</h2>`
             : ""
         }
         ${
