@@ -22,7 +22,7 @@ function blockHtml(item: { block: Block }, index: number, page: Page): string {
       <div class="w-full md:w-1/2 p-4">
         ${
           block.image
-            ? `<img src="${block.image.url}" alt="${block.image.title}" width="200" height="112" class="w-full"${cslp(block.$, "image")} />`
+            ? `<img src="${escapeAttr(block.image.url)}" alt="${escapeAttr(block.image.title)}" width="200" height="112" class="w-full"${cslp(block.$, "image")} />`
             : ""
         }
       </div>
