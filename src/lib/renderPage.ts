@@ -61,7 +61,7 @@ export function pageHtml(page?: Page): string {
     }
     ${
       page.image
-        ? `<img class="mb-4" width="768" height="414" src="${page.image.url}" alt="${page.image.title}"${cslp(page.image.$, "url")} />`
+        ? `<img class="mb-4" width="768" height="414" src="${escapeAttr(page.image.url)}" alt="${escapeAttr(page.image.title)}"${cslp(page.image.$, "url")} />`
         : ""
     }
     ${
