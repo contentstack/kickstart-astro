@@ -51,12 +51,12 @@ export function pageHtml(page?: Page): string {
   return `
     ${
       page.title
-        ? `<h1 class="text-4xl font-bold mb-4 text-center"${cslp(page.$, "title")}>${page.title}</h1>`
+        ? `<h1 class="text-4xl font-bold mb-4 text-center"${cslp(page.$, "title")}>${escapeHtml(page.title)}</h1>`
         : ""
     }
     ${
       page.description
-        ? `<p class="mb-4 text-center"${cslp(page.$, "description")}>${page.description}</p>`
+        ? `<p class="mb-4 text-center"${cslp(page.$, "description")}>${escapeHtml(page.description)}</p>`
         : ""
     }
     ${
