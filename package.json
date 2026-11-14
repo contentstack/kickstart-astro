@@ -24,7 +24,7 @@
     "@contentstack/live-preview-utils": "^4.5.3",
     "@contentstack/utils": "^1.9.1",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.4.4",
+    "astro": "^7.4.7",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   },
