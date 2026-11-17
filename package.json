@@ -21,21 +21,21 @@
   "dependencies": {
     "@astrojs/check": "^0.9.12",
     "@contentstack/delivery-sdk": "^5.6.2",
-    "@contentstack/live-preview-utils": "^4.5.3",
+    "@contentstack/live-preview-utils": "^4.6.1",
     "@contentstack/utils": "^1.9.1",
-    "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.4.4",
-    "tailwindcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.5",
+    "astro": "^7.4.12",
+    "tailwindcss": "^4.3.5",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@emnapi/core": "^1.11.3",
-    "@napi-rs/wasm-runtime": "~1.2.6",
+    "@napi-rs/wasm-runtime": "~1.2.7",
     "emnapi": "^1.11.3"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.67.4",
-    "@rollup/rollup-linux-x64-musl": "^4.67.4",
+    "@rollup/rollup-linux-x64-gnu": "^4.68.5",
+    "@rollup/rollup-linux-x64-musl": "^4.68.5",
     "lightningcss-linux-x64-gnu": "1.33.0",
     "lightningcss-linux-x64-musl": "1.33.0"
   },
